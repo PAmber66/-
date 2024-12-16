@@ -1,0 +1,65 @@
+#include<iostream>
+#include<string>
+#include<fstream>
+#include"LexicalAnalysis.h"
+#include"Parser.h"
+
+using namespace std;
+
+int main() {
+	ifstream sourceFile("parserSource.txt");
+	ofstream targetFile("parserResult.txt");
+
+	int wordIndex = 1;	//用于提示第几个单词出现了错误
+
+	if (sourceFile.is_open() && targetFile.is_open()) {
+		char ch;				
+		string strWord = "";		
+		string strOperator = "";	
+		string strBaun = "";		
+		string strTemp = "";		
+		int tempFlag;				
+		int parserfalg = 1;				
+		vector<char> inputStr;		
+
+		cout << "词法分析结果序列格式如下：" << endl;
+		cout << "单词\t对应文法的符号" << endl;
+
+		// 读到文件结尾停止
+		while (!sourceFile.eof()) {
+			ch = sourceFile.get();
+			tempFlag = LexAnalysis(wordIndex, ch, strWord, strOperator, strBaun, strTemp, inputStr);
+			if (tempFlag == 0) {
+				parserfalg = 0;
+			}
+			else {
+				continue;
+			}
+		}
+
+		if (parserfalg == 0) {
+			cout << "单词输入错误，不再进行语法分析！" << endl;
+			return 0;
+		}
+
+		inputStr.push_back('#');	
+
+		if (parser(inputStr)) {
+			cout << "语法分析正确！" << endl;
+		}
+		else {
+			cout << "语法分析错误！" << endl;
+		}
+
+		sourceFile.close();
+		targetFile.close();
+	}
+	else if (!sourceFile.is_open()) {
+		cout << "打开parserSource文件失败！" << endl;
+	}
+	else {
+		cout << "打开parserResult文件失败！" << endl;
+	}
+
+	return 0;
+}
