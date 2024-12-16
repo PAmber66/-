@@ -1,0 +1,8 @@
+﻿  C++赋值语句语法分析.cpp
+  DataStruct.cpp
+  Grammar.cpp
+C:\Users\70708\source\repos\C++赋值语句语法分析\Grammar.cpp(60,11): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+C:\Users\70708\source\repos\C++赋值语句语法分析\Grammar.cpp(128,18): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  Lexical.cpp
+  正在生成代码...
+  C++赋值语句语法分析.vcxproj -> C:\Users\70708\source\repos\C++赋值语句语法分析\x64\Debug\C++赋值语句语法分析.exe
